@@ -1,7 +1,13 @@
 // routes/user.js
 
 import express from 'express';
-import { crearUsuario, getUsuarios, actualizarUsuario, eliminarUsuario } from '../controllers/user.js';
+import {
+  crearUsuario,
+  getUsuarios,
+  actualizarUsuario,
+  eliminarUsuario,
+
+} from '../controllers/user.js';
 
 const router = express.Router();
 
@@ -43,6 +49,29 @@ router.get('/get-all', async (req, res) => {
   } catch (error) {
     console.error('Error al obtener usuarios:', error);
     return res.status(500).json({ error: 'Problemas al obtener usuarios' });
+  }
+});
+
+// Ruta para iniciar sesión
+router.post('/login', async (req, res) => {
+  try {
+    const { correo, contrasena } = req.body;
+
+    // Lógica para verificar las credenciales en la base de datos
+    // Aquí debes comparar el correo y la contraseña con los registros en tu base de datos
+
+    // Supongamos que obtienes el usuario de la base de datos
+    const usuario = await obtenerUsuarioPorCorreo(correo);
+
+    if (!usuario || usuario.contrasena !== contrasena) {
+      return res.status(401).json({ error: 'Credenciales incorrectas' });
+    }
+
+    // Si las credenciales son válidas, puedes enviar algún tipo de token de sesión o simplemente confirmar el inicio de sesión
+    return res.status(200).json({ mensaje: 'Inicio de sesión exitoso', usuario });
+  } catch (error) {
+    console.error('Error al iniciar sesión:', error);
+    return res.status(500).json({ error: 'Problemas al iniciar sesión' });
   }
 });
 

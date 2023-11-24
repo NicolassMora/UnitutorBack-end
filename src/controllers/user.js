@@ -34,7 +34,7 @@ const handleResponse = (res, success, data, error) => {
 const validarCamposUsuario = (req, res, next) => {
   const usuario = req.body;
 
-  if (!usuario.nombre || !usuario.correo) {
+  if (!usuario.nombre || !usuario.correo || !usuario.contrasena || !usuario.confirmContrasena || !usuario.id) {
     return handleResponse(res, false, null, 'Campos obligatorios faltantes');
   }
 
@@ -58,23 +58,25 @@ const crearUsuario = async (req, res) => {
   }
 };
 
-
 const getUsuarios = async (req, res) => {
   try {
     const usuarios = await executeQuery('SELECT * FROM Usuarios');
-    console.log('Usuarios obtenidos:', usuarios); // Agrega esto para ver los usuarios en la consola
+    console.log('Usuarios obtenidos:', usuarios);
     return handleResponse(res, true, { usuarios });
   } catch (error) {
-    console.error('Error al obtener usuarios:', error); // Agrega esto para ver los errores en la consola
+    console.error('Error al obtener usuarios:', error);
     return handleResponse(res, false, null, 'Problemas al obtener usuarios');
   }
 };
+
 const actualizarUsuario = async (req, res) => {
   try {
     const usuarioId = req.params.id;
     const nuevoUsuario = req.body;
 
-    await executeQuery('UPDATE Usuarios SET nombre = ?, correo = ? WHERE id = ?', [nuevoUsuario.nombre, nuevoUsuario.correo, usuarioId]);
+    await executeQuery('UPDATE Usuarios SET nombre = ?, apellido = ?, correo = ?, contrasena = ?, confirmContrasena = ? WHERE id = ?', 
+      [nuevoUsuario.nombre, nuevoUsuario.apellido, nuevoUsuario.correo, nuevoUsuario.contrasena, nuevoUsuario.confirmContrasena, usuarioId]
+    );
 
     return handleResponse(res, true, { message: 'Usuario actualizado exitosamente' });
   } catch (error) {
@@ -94,4 +96,4 @@ const eliminarUsuario = async (req, res) => {
   }
 };
 
-export { getUsuarios, crearUsuario, validarCamposUsuario, actualizarUsuario, eliminarUsuario };
+export { getUsuarios, crearUsuario, validarCamposUsuario, actualizarUsuario, eliminarUsuario, };
