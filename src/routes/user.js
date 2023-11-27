@@ -1,23 +1,22 @@
-/* The code is creating a router object using the `Router` class from the `express` module. It then
-defines two routes: */
+/* El código está creando un objeto de enrutador utilizando la clase `Router` del módulo `express`. Luego,
+define dos rutas: */
 import { Router } from 'express';
 
 import { crearUsuario, getUsuarios } from '../controllers/user.js';
 
-/* `const router = Router();` is creating a new router object using the `Router` class from the
-`express` module. This router object will be used to define routes and handle HTTP requests. */
+/* `const router = Router();` crea un nuevo objeto de enrutador utilizando la clase `Router` del
+módulo `express`. Este objeto de enrutador se utilizará para definir rutas y manejar solicitudes HTTP. */
 const router = Router();
 
-/* `router.route('/create').post(crearUsuario)` is defining a route for the HTTP POST method on the
-'/create' endpoint. */
+/* `router.route('/create').post(crearUsuario)` define una ruta para el método POST de HTTP en el
+punto final '/create'. */
 router.route('/create')
     .post(crearUsuario);
 
-/* `router.route('/get-all').get(getUsuarios)` is defining a route for the HTTP GET method on the
-'/get-all' endpoint. This means that when a GET request is made to the '/get-all' endpoint, the
-`getUsuarios` function will be called to handle the request. */
+/* `router.route('/get-all').get(getUsuarios)` define una ruta para el método GET de HTTP en el
+punto final '/get-all'. Esto significa que cuando se realiza una solicitud GET al punto final '/get-all',
+la función `getUsuarios` se llamará para manejar la solicitud. */
 router.route('/get-all')
     .get( getUsuarios );
 
-
-export default router;
+    export default router;

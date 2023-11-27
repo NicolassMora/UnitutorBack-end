@@ -7,7 +7,7 @@ import values from '../const/const.js';
 const connectionConfig = {
     host: values.HOST,  // Dirección del servidor de la base de datos.
     user: values.USER,  // Nombre de usuario para la conexión.
-    password: '312312',  // Contraseña de la base de datos
+    password: '',  // Contraseña de la base de datos
     database: values.DATABASE  // Nombre de la base de datos.
 };
 
