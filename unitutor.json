@@ -1,0 +1,55 @@
+{"unitutor":{
+
+	"asignatura":{
+		"id": 61,
+		"nombre": "ICI324",
+		"profesores": [
+  			"Diego Miranda",
+  	  		"Diego Monsalves"
+  	  ],
+		"tutores": [
+			"Nicolás Mora",
+			"Marcelo Estay"
+		]},
+
+	"estudiante":{
+		"id": 51,
+		"nombre": "Lester Gonzales",
+		"correo": "lester.gonzalez@alumnos.uv.cl",
+		"fecha_ingreso": "03/15/2019"
+
+	},
+
+	"material":{
+		"id": 71,
+		"asignatura": "ICI324",
+		"link": "https://www.youtube.com/watch?v=lWMemPN9t6Q"
+	},
+
+	"profesor": {
+		"id": 21,
+		"nombre": "Diego Monsalves",
+		"correo": "diego.monsalves@uv.cl",
+		"asignatura": "ICI324"
+	},
+
+	"reseña": {
+		"id": 41,
+		"estudiante": "Lester Gonzales",
+		"tutor": "Marcelo Estay",
+		"calificacion": [7, "Muy bonito"]
+	},
+
+	"tutor":{
+		"id_tutor": "11",
+		"nombre": "Nicolás Mora",
+		"correo": "nicolas.mora@alumnos.uv.cl"
+	},
+
+	"tutoria":{
+		"id": 31,
+		"asignatura": "ICI324",
+		"hora_inicio": "10:15",
+		"hora_termino": "11:45"
+	}
+}}
