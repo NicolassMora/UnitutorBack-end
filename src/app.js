@@ -1,50 +1,46 @@
-/* The code you provided is setting up an Express.js server with various middleware and configurations. */
+/* El código proporcionado configura un servidor Express.js con varios middleware y configuraciones. */
 import cors from 'cors';
 import path from 'path';
 import morgan from 'morgan';
 import express from 'express';
 
 import value from './const/const.js';
-//archivo de la confiraciaona de bd 
-import './database/connection.js'
-const app = express(); //crear instancia app
+// Archivo de la configuración de la base de datos 
+import './database/connection.js';
 
-/* The `corsOptions` object is a configuration object for the CORS (Cross-Origin Resource Sharing)
-middleware. CORS is a mechanism that allows resources (e.g., fonts, JavaScript, etc.) on a web page
-to be requested from another domain outside the domain from which the resource originated. */
+const app = express(); // Crear instancia de la aplicación Express
+
+/* El objeto `corsOptions` es un objeto de configuración para el middleware CORS (Cross-Origin Resource Sharing).
+CORS es un mecanismo que permite que los recursos (por ejemplo, fuentes, JavaScript, etc.) en una página web
+sean solicitados desde otro dominio fuera del dominio desde el cual se originó el recurso. */
 const corsOptions = {
     credentiasl: true,
-    optionSuccessStatus:200,
+    optionSuccessStatus: 200,
     methods: "GET, PUT, POST, DELETE",
     origin: '*'
 };
 
-
-/* The code `app.set('env', value.NODE_ENV)` is setting the environment variable for the Express.js
-application. The value of `value.NODE_ENV` is being assigned to the `env` setting. This is typically
-used to determine the application's behavior based on the environment it is running in, such as
-development, production, or testing. */
-
+/* El código `app.set('env', value.NODE_ENV)` establece la variable de entorno para la aplicación Express.js.
+El valor de `value.NODE_ENV` se asigna a la configuración `env`. Esto se utiliza típicamente para determinar
+el comportamiento de la aplicación según el entorno en el que se esté ejecutando, como desarrollo, producción o prueba. */
 app.set('env', value.NODE_ENV);
 app.set('port', value.RUN_PORT);
 
-/* The code `app.use(morgan('dev'))` is setting up the Morgan middleware, which is a logging middleware
-for Express.js. It logs HTTP requests to the console in a development-friendly format. */
+/* El código `app.use(morgan('dev'))` configura el middleware Morgan, que es un middleware de registro
+para Express.js. Registra las solicitudes HTTP en la consola en un formato amigable para el desarrollo. */
 app.use(morgan('dev'));
 app.use(cors(corsOptions));
-app.use(express.json({limit: '500MB'}));
-app.use(express.urlencoded({extended:true}));
+app.use(express.json({ limit: '500MB' }));
+app.use(express.urlencoded({ extended: true }));
 
-//static folder
+// Carpeta estática
 app.use(express.static(path.join(path.resolve(), value.STATIC_PATH)));
 
-
-//ENDPOINTs
+// ENDPOINTS
 import routerUser from './routes/user.js';
 
-/* `app.use('/user', routerUser)` is setting up a middleware for the Express.js application. It
-specifies that any requests with a URL starting with '/user' should be handled by the `routerUser`
-router. */
+/* `app.use('/user', routerUser)` configura un middleware para la aplicación Express.js.
+Especifica que cualquier solicitud con una URL que comience con '/user' debe ser manejada por el enrutador `routerUser`. */
 app.use('/user', routerUser);
 
-export default app
+export default app;

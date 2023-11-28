@@ -12,6 +12,7 @@ const HOST = process.env.HOST; // Dirección del servidor de la base de datos ob
 const USER = process.env.USER; // Nombre de usuario de la base de datos obtenido de las variables de entorno.
 const DATABASE = process.env.DATABASE; // Nombre de la base de datos obtenido de las variables de entorno.
 
+
 /* El código crea un objeto llamado `object` y le asigna los valores de las constantes
    `SECRET`, `NODE_ENV`, `RUN_PORT` y `STATIC_PATH`. Estas constantes se obtienen de las variables de entorno
    utilizando `process.env`. */

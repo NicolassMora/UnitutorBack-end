@@ -12,8 +12,14 @@ module.exports = () => {
                 useUndefiendTopology: true
             },
             (err) => {
+                if (err){
+                    console.log('DB: ERROR ');
+                }else{
+                    console.log('Conexion exitosa')
+                }
 
             }
         )
     }
+    connect();
 }
