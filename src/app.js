@@ -7,6 +7,7 @@ import express from 'express';
 import value from './const/const.js';
 // Archivo de la configuración de la base de datos 
 import './database/connection.js';
+import connect from '\config\db.js';
 
 const app = express(); // Crear instancia de la aplicación Express
 
@@ -42,5 +43,7 @@ import routerUser from './routes/user.js';
 /* `app.use('/user', routerUser)` configura un middleware para la aplicación Express.js.
 Especifica que cualquier solicitud con una URL que comience con '/user' debe ser manejada por el enrutador `routerUser`. */
 app.use('/user', routerUser);
+
+connect()
 
 export default app;
